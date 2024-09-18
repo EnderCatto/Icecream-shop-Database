@@ -1,0 +1,72 @@
+Pred začiatkom normalizácie : 
+Dodavatel (ID_Dodavatela, Dod_Tel_č, ICO, Adresa, Nazov)
+Dodavaci_list (ID_dod_list, ID_materialu, ID_Dodavatela, Cena, Datum, Mnozstvo)
+Material (ID_materialu, ID_Dodavatela, ID_dod_list, Cena, Názov, Mnozstvo)
+Vyrobny_proces (ID_Vyrob_proc,  Cena_materialov, Množstvo, Názov, Využ_Množstvo, ID_Stroja, ID_Vyrobku, ID_materialu, ID_Spotreba_Stroj, Merná jednotka)
+Vyrobok (ID_Vyrobku, Mnozstvo, Predajna_cena, Nazov, marza) 
+Oddelenie (ID_oddelenia, ID_Zamestnanca, Nazov)
+Zamestnanec (ID_ Zamestnanca, Meno, Priezvisko, Cele_meno, Pohlavie, Vyplata, Tel_c, Rola_zamestnanca)
+Stroj (ID_Stroja, Nazov,  ID_zamestnanca, ID_oddelenia, Aktualny_rok, Rok_zaradenia, Opotrebenie stroja) 
+Spotreba_Stroj (ID_Spotreba_Stroj, Využ_Množstv, Typ Stroja, Merná jednotka, Typ Energie, Názov, ID_Stroja)
+Energie (ID_Energie, Typ, ID_Dod_energie, Využ_Množstvo, Mesiac, Cena)
+Dodavatel_Energie (ID_Dod_energie, ID_Energie, Typ, Cena, Mnozstvo, Dod_Ene_Tel_c)
+Bankovy_ucet (ID_Bank_uct, Čislo_bank_učtu, Mnozstvo_Penaz_Bank_uct)
+Pokladnica (ID_Pokladnice,  Množstvo_Penaz_Pokladnica)
+Transakcia (ID_transakcia, Cena, Cas, spôsob transakcie)
+Objednavka (ID_objednavky, Cas, Mnozstvo, Cena, ID_Vyrobku)
+Historia_Objednavok_Transakcii (ID_Hist, ID_objednavky, ID_transakcie)
+Zakaznik (ID_zakaznika, zak_tel_č, Adresa)
+
+NF 1 : 
+Stroj (ID_Stroja, Nazov,  ID_zamestnanca, ID_oddelenia, Aktualny_rok, Rok_zaradenia, Opotrebenie stroja) 
+
+> Stroj (ID_Stroja, Nazov,  ID_zamestnanca, ID_oddelenia, Opotrebenie_Stroja) 
++ Opotrebenie_stroja (Aktualny_rok, Rok_zaradenia, Opotrebenie stroja) 
+Zamestnanec (ID_ Zamestnanca, Meno, Priezvisko, Cele_meno, Pohlavie, Vyplata, Tel_c, Rola_zamestnanca)
+
+> Zamestnanec (ID_ Zamestnanca, Meno, Priezvisko, Pohlavie, Vyplata, Tel_c, Rola_zamestnanca)
+
+NF2 : 
+
+Vyrobny_proces (ID_Vyrob_proc,  Cena_materialov, Množstvo, Názov, Využ_Množstvo, ID_Stroja, ID_Vyrobku, ID_materialu, ID_Spotreba_Stroj, Merná jednotka)
+ 
+>  Recept (ID_Recept, ID_Vyrobku, Názov, ID_Ingredencie, ID_Vyuzite_stroje)
++  Ingredencie (ID_Ingredencie, ID_materialu, Množstvo, Cena_materialov, Ingredencia1, Ingredencia2, Ingredencia3, Ingredencia4)
++ Vyuzite_stroje (ID_Vyuzite_stroje, ID_Spotreba_Stroj, ID_Stroja,  Merná jednotka, Využ_Množstvo, stroj1, stroj2, stroj3, stroj4, stroj5)
+
+NF3 : 
+
+
+
+
+
+
+
+
+
+
+
+
+Po normalizácií : 
+
+Dodavatel (ID_Dodavatela, Dod_Tel_č, ICO, Adresa, Nazov)
+Dodavaci_list (ID_dod_list, ID_materialu, ID_Dodavatela, Cena, Datum, Mnozstvo)
+Material (ID_materialu, ID_Dodavatela, ID_dod_list, Cena, Názov, Mnozstvo)
+Recept (ID_Recept, ID_Vyrobku, Názov, ID_Ingredencie, ID_Vyuzite_stroje)
+Ingredencie (ID_Ingredencie, ID_materialu, Množstvo, Cena_materialov, Ingredencia1, Ingredencia2, Ingredencia3, Ingredencia4)
+Vyuzite_stroje (ID_Vyuzite_stroje, ID_Spotreba_Stroj, ID_Stroja,  Merná jednotka, Využ_Množstvo, stroj1, stroj2, stroj3, stroj4, stroj5)
+Vyrobok (ID_Vyrobku, Mnozstvo, Predajna_cena, Nazov, Marza) 
+Oddelenie (ID_oddelenia, ID_Zamestnanca, Nazov)
+Zamestnanec (ID_ Zamestnanca, Meno, Priezvisko, Pohlavie, Vyplata, Zam_tel_c, Rola_zamestnanca)
+Stroj (ID_Stroja, Nazov,  ID_zamestnanca, ID_oddelenia, Opotrebenie_Stroja) 
+Opotrebenie_stroja (Aktualny_rok, Rok_zaradenia, Opotrebenie stroja) 
+Spotreba_Stroj (ID_Spotreba_Stroj, Využ_Množstv, Typ Stroja, Merná jednotka, Typ Energie, Názov, ID_Stroja)
+Energie (ID_Energie, Typ, ID_Dod_energie, Využ_Množstvo, Mesiac, Cena)
+Dodavatel_Energie (ID_Dod_energie, ID_Energie, Typ, Cena, Mnozstvo, Merna_jednotka, Dod_Ene_Tel_c)
+Bankovy_ucet (ID_Bank_uct, Cislo_bank_uctu, Mn_Penaz_Bank_uct)
+Pokladnica (ID_Pokladnice,  Množstvo_Penaz_Pokladnica)
+Transakcia (ID_transakcia, Cena, Cas, Typ_transakcie)
+Objednavka (ID_objednavky, Cas, Mnozstvo, Cena, Celk_cena, ID_Vyrobku)
+Historia_Objednavok_Transakcii (ID_Hist, ID_objednavky, ID_transakcie)
+Zakaznik (ID_zakaznika, Zak_tel_č, Adresa_zak)
+
